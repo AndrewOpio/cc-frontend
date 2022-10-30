@@ -21,6 +21,11 @@ export const clusterMetrics = createAsyncThunk('appDash/clusterMetrics', async (
   return response.data
 })
 
+export const addLogs = createAsyncThunk('appDash/addLogs', async () => {
+  const response = await axios.get('http://127.0.0.1:4000/proxmox/cluster_metrics')
+  return response.data
+})
+
 export const clusterMachines = createAsyncThunk('appDash/clusterMachines', async (data) => {
   const response = await axios.post('http://127.0.0.1:4000/proxmox/cluster_metrics/machine', data)
   return response.data
@@ -32,7 +37,8 @@ export const appInfrastructureSlice = createSlice({
     status: [],
     cluster_logs: [],
     clusters: [],
-    cluster_data: {},
+    //cluster_data: {},
+    cluster_data: response.data,
     virtual_machines: [],
     count: 0
   },
@@ -49,7 +55,7 @@ export const appInfrastructureSlice = createSlice({
         //console.log(action.payload)
       })
       .addCase(clusterMetrics.fulfilled, (state, action) => {
-        state.cluster_data = action.payload.data.cluster_data.data 
+       // state.cluster_data = action.payload.data.cluster_data.data 
         //console.log(action.payload)
       })
       .addCase(clusterMachines.fulfilled, (state, action) => {

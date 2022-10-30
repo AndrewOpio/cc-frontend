@@ -46,6 +46,7 @@ export const appDashSlice = createSlice({
     applications: 0,
     users: 0,
     databases: 0,
+    //cluster_data: {},
     cluster_data: response.data,
     all_logs: [],
   },

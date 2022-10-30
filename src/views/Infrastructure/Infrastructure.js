@@ -26,7 +26,7 @@ import { MDBDataTable } from "mdbreact";
 import "mdbreact/dist/css/mdb.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import 'bootstrap-css-only/css/bootstrap.min.css';
-import { clusterStatus, clusterLogs, clusterMetrics, clusterMachines } from "./store";
+import { clusterStatus, clusterLogs, clusterMetrics, clusterMachines, addLogs } from "./store";
 import { Avatar } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { useDispatch, useSelector } from "react-redux";
@@ -157,26 +157,6 @@ function Infrastructure(props) {
     }
 
 
-  
-    /*var test = {}
-    test.value = 0;
-    status.push(test);
-    test.value = 0;
-    status.push(test);
-    test.value = 0;
-    status.push(test);
-    test.value = 0;
-    status.push(test);
-    test.value = 0;
-    status.push(test);
-    test.value = 0;
-    status.push(test);
-    test.value = 0;
-    status.push(test);
-    test.value = 0;
-    status.push(test);*/
-
-
     if (uptime > 0) {
       probability = (uptime / total) * 100;
 
@@ -284,8 +264,11 @@ function Infrastructure(props) {
     }
 
     setLogs(logs);
+
   }
 
+
+//      setInterval(dispatch(addLogs()), 5000);
 
   const handleChange = (event) => {
     setName(event.target.value)
